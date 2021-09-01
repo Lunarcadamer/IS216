@@ -5,12 +5,87 @@ body {
     margin: 0;
     padding: 0;
     /* You can add more CSS script below */
+    background-color: rgb(251, 232, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
 }
 
 
 
 /* Add your CSS script below */
+.box {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
 
+#main-header {
+    background-color: yellow;
+    color: blue;
+}
+
+#navigation-bar {
+    background-color: grey;
+    color: white;
+}
+
+#navigation-bar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#navigation-bar li {
+    display: inline;
+}
+
+#navigation-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding-right: 20px;
+}
+
+#top-content {
+    background-color: brown;
+    background-image: url(../images/hyunbin_bg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    text-align: center;
+    min-height: 400px;
+    margin-bottom: 20px;
+}
+
+#top-content h1 {
+    color: white;
+    font-size: 40px;
+    line-height: 1.5em;
+    padding-top: 30px;
+}
+
+#main-content {
+    float: left;
+    width: 70%;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+#side-bar {
+    float: right;
+    width: 30%;
+    background-color: green;
+    color: white;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#main-footer {
+    background-color: gray;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+}
 
 
 /* DO NOT MODIFY THIS */
