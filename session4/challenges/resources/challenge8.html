@@ -58,6 +58,36 @@
         //
         // HINT: Re-use your Challenge 7 code
         
+        for (friend of friends) {
+            let counter = 0;
+            table_data += "<tr>";
+            for (detail of friend) {
+                if (counter == 1) {
+                    if (detail == 'Female') {
+                    table_data += "<td class='female'>";
+                    }
+                    else if (detail == 'Male') {
+                        table_data += "<td class='male'>";
+                    }
+                }
+                else if (counter == 3) {
+                    if (detail > 50000) {
+                    table_data += "<td class='rich'>";
+                    }
+                    else {
+                        table_data += "<td>";
+                    }
+                }
+                else {
+                    table_data += "<td>"
+                }
+
+                table_data += detail
+                table_data += "</td>";
+                counter ++
+            }
+            table_data += "</tr>";
+        }
 
         // Once table_data is completed
         // It will be used by JavaScript code below (inside body)
