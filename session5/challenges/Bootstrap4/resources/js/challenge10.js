@@ -38,14 +38,20 @@ const stars_dataset = [
     }
 ];
 
-
 // [TODO] IMPLEMENT THIS FUNCTION
 // When the webpage loads, the web browser will call this function.
 // Randomly determine whether to show "male" stars or "female" stars
 function display_default() {
 
     // YOUR CODE GOES HERE
+    let gender = Math.floor(Math.random() * 2); // 0 = male, 1 = female
 
+    if (gender == 0) {
+        show_male_stars();
+    }
+    else {
+        show_female_stars();
+    }
     // Look for "[IMPORTANT]" inside challenge10.html file.
     // It tells you what elements need to be updated by JavaScript functions.
 
@@ -67,7 +73,46 @@ function display_default() {
 function show_male_stars() {
 
     // YOUR CODE GOES HERE
+    let stars = stars_dataset[0];
+    console.log(stars);
 
+    let count = 1;
+    for (let star of Object.entries(stars)) {
+        console.log(star);
+
+        let name = star[0];
+        let img_src = 'images/' + star[1][0];
+        let quote = star[1][1];
+        let wiki = star[1][2];
+
+        console.log(name);
+        console.log(img_src);
+        console.log(quote);
+        console.log(wiki);
+
+        // Retrieve img
+        // 1) Update src
+        // 2) Update alt
+        document.getElementById("image" + count).setAttribute("src", img_src);
+        document.getElementById("image" + count).setAttribute("alt", name);
+
+        // Retrieve carousel slide
+        // 1) Update slide_heading
+        // 2) Update slide_title
+        document.getElementById("slide_heading" + count).innerText = name;
+        document.getElementById("slide_title" + count).innerText = quote;
+
+        // Retrieve wiki links <a> tags
+        // 1) Update URL
+        // 2) Update link text
+        document.getElementById("wiki" + count).setAttribute("href", wiki);
+        document.getElementById("wiki" + count).innerText = name;
+
+        count++
+    }
+
+    document.getElementById("male_button").disabled = true;
+    document.getElementById("female_button").disabled = false;
 }
 
 
@@ -76,5 +121,44 @@ function show_male_stars() {
 function show_female_stars() {
 
     // YOUR CODE GOES HERE
+    let stars = stars_dataset[1];
+    console.log(stars);
 
+    let count = 1;
+    for (let star of Object.entries(stars)) {
+        console.log(star);
+
+        let name = star[0];
+        let img_src = 'images/' + star[1][0];
+        let quote = star[1][1];
+        let wiki = star[1][2];
+
+        console.log(name);
+        console.log(img_src);
+        console.log(quote);
+        console.log(wiki);
+
+        // Retrieve img
+        // 1) Update src
+        // 2) Update alt
+        document.getElementById("image" + count).setAttribute("src", img_src);
+        document.getElementById("image" + count).setAttribute("alt", name);
+
+        // Retrieve carousel slide
+        // 1) Update slide_heading
+        // 2) Update slide_title
+        document.getElementById("slide_heading" + count).innerText = name;
+        document.getElementById("slide_title" + count).innerText = quote;
+
+        // Retrieve wiki links <a> tags
+        // 1) Update URL
+        // 2) Update link text
+        document.getElementById("wiki" + count).setAttribute("href", wiki);
+        document.getElementById("wiki" + count).innerText = name;
+
+        count++
+    }
+
+    document.getElementById("male_button").disabled = false;
+    document.getElementById("female_button").disabled = true;
 }

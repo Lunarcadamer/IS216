@@ -87,7 +87,7 @@ function display_reviews() {
     // As the first step, observe the 'reviews' constant variable.
     // What kind of data structure is it?
     // How do you retrieve each hotel's data?
-
+    console.log(reviews)
 
     // [IMPORTANT]
     // This code populates 'hotel_buttons_div' section of HTML.
@@ -98,17 +98,21 @@ function display_reviews() {
     // e.g. How about id attribute?
     //      Is this button's id... used by another code later on (see below - collapse div).
     // e.g. What about the hotel's name?
-    var hotel_button_div = document.getElementById('hotel_button_div');
-    console.log(hotel_button_div);
-    hotel_button_div.innerHTML = `
-            <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel1">
-                Hotel name placeholder 1
-            </button>
 
-            <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel2">
-                Hotel name placeholder 2
-            </button>
-    `;
+    let hotel_button_div_str = "";
+    let hotel_info_div_str = "";
+
+    let counter = 1;
+    for (let hotel of Object.entries(reviews)) {
+        let name = hotel[0];
+        hotel_button_div_str += `<button style="margin-bottom: 5px; width: 200px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel${counter}"}>${name}</button>`;
+        counter += 1;
+    }
+
+    // Populate 'hotel_buttons_div' section of HTML
+    var hotel_button_div = document.getElementById('hotel_button_div');
+    //console.log(hotel_button_div);
+    hotel_button_div.innerHTML = hotel_button_div_str;
 
 
     // [IMPORTANT]
@@ -129,66 +133,63 @@ function display_reviews() {
     // e.g. Also note that each hotel has 5 customer reviews.
     //      Think about how you'd construct a String... 
     //      containing all 5 reviews (review comment & reviewer's name)
-    var hotel_button_div = document.getElementById('hotel_info_div');
-    console.log(hotel_info_div);
-    hotel_info_div.innerHTML = `
-            <!-- Hotel 1 -->
-            <div class="collapse show" id="hotel1">
+
+    counter = 1;
+    for (hotel of Object.entries(reviews)) {
+        let show = '';
+        if (counter == 1) {
+            show = ' show';
+        }
+        hotel_info_div_str += 
+            `<div class="collapse${show}" id="hotel${counter}">
                 <div class="card card-body">
                     <div class="container-fluid">
-                        <h2 style="font-weight: bold">Hotel Name Goes Here - Hotel 1</h2>
+                        <h2 style="font-weight: bold">${hotel[0]}</h2>
                         <ul class="list-unstyled">
                             <li>
-                                <img src="images/sm_hotel_placeholder.jpg">
+                                <img src="images/${hotel[1][3]}">
                             </li>
                             <li>
                                 <i class="fas fa-map-marked-alt"></i>
-                                123 Simpson Avenue, New York City, NY 10014-1234, USA
+                                ${hotel[1][0]}
                             </li>
                             <li>
                                 <i class="fas fa-phone"></i>
-                                +1 212-555-1234
+                                ${hotel[1][1]}
                             </li>
                             <li>
                                 <i class="fas fa-star"></i>
-                                Ranked #100 of 700 Hotels in New York City
+                                ${hotel[1][2]}
                             </li>
                         </ul>
                     </div>
 
                     <hr class="my-3">
-
                     <div class="container-fluid">
+                    `
+                let reviews = hotel[1][4]; // object
+                for (let review of Object.entries(reviews)) {
+                    hotel_info_div_str += `
                         <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
+                            <p class="mb-0">${review[1]}</p>
                             <footer class="blockquote-footer">
-                                <cite>Homer Simpson</cite>
+                                <cite>${review[0]}</cite>
                             </footer>
-                        </blockquote>
-
-                        <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
-                            <footer class="blockquote-footer">
-                                <cite>Lisa Simpson</cite>
-                            </footer>
-                        </blockquote>
-
-                        <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
-                            <footer class="blockquote-footer">
-                                <cite>Bart Simpson</cite>
-                            </footer>
-                        </blockquote>
+                        </blockquote>`
+                }
+                hotel_info_div_str += `
                     </div> <!-- End of Quotes -->
                 </div> <!-- End of Card Body -->
             </div> <!-- End of Collapse -->
+        `;
+        counter += 1;
+ 
+    }
 
-            <!-- Hotel 2 -->
-            <div class="collapse" id="hotel2" aria-labelledby="hotel2">
-                <div class="card card-body">
-                    Hotel 2 info goes here...
-                </div>
-            </div>
-    `;
+    // Populate 'hotel_info_div' section of HTML
+    var hotel_info_div = document.getElementById('hotel_info_div');
+    console.log(hotel_info_div);
+    hotel_info_div.innerHTML = hotel_info_div_str;
+    
 
 }
